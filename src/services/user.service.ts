@@ -1,6 +1,6 @@
 import { User } from "../types/user.types";
-import { v4 as uuidv4 } from "uuid";
 
+let nextId = 1;
 const users: User[] = [];
 
 export const userService = {
@@ -14,7 +14,7 @@ export const userService = {
 
   createUser: async (data: { username: string; password: string }): Promise<User> => {
     const newUser: User = {
-      id: uuidv4(),
+      id: String(nextId++),
       username: data.username,
       password: data.password,
     };
