@@ -43,7 +43,7 @@ export const loginUser: RequestHandler<{}, {}, LoginBody> = async (req, res) => 
 export const getUserById: RequestHandler<{ id: string }> = async (req, res) => {
   const { id } = req.params;
   try {
-    // 1. Check Redis first
+    // check Redis first
     const cachedUser = await cacheService.getUser(id);
     if (cachedUser) {
       console.log(`Cache HIT for user:${id}`);
@@ -51,7 +51,7 @@ export const getUserById: RequestHandler<{ id: string }> = async (req, res) => {
       return;
     }
 
-    // 2. Miss — go to DB
+    // miss — go to DB
     console.log(`Cache MISS for user:${id} — fetching from DB`);
     const user = await userService.findById(id);
     if (!user) {
@@ -59,7 +59,7 @@ export const getUserById: RequestHandler<{ id: string }> = async (req, res) => {
       return;
     }
 
-    // 3. Save to Redis for next time
+    // save to Redis for next time
     await cacheService.setUser(user);
     res.status(200).json({ source: "database", user });
   } catch (error) {
