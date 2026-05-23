@@ -17,7 +17,6 @@ export const userService = {
       id: uuidv4(),
       username: data.username,
       password: data.password,
-      isSuperAdmin: false,
     };
     users.push(newUser);
     return newUser;

@@ -1,7 +1,7 @@
 import redisClient from "../config/redis";
 import { User } from "../types/user.types";
 
-const USER_TTL = 3600; // cache expires after 1 hour (in seconds)
+const USER_TTL = 28800; // cache expires after 8 hours
 
 export const cacheService = {
   // Save a user to Redis by their ID
