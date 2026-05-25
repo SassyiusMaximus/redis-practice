@@ -6,8 +6,8 @@ const USER_TTL = 28800; // cache expires after 8 hours
 export const cacheService = {
   // save a user to Redis by their ID
   setUser: async (user: User): Promise<void> => {
-    await redisClient.setEx(
-      `user:${user.id}`,
+    await redisClient.setEx( 
+      `user:${user.id}`, //user key (user:1)
       USER_TTL,
       JSON.stringify(user)
     );

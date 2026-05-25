@@ -7,7 +7,7 @@ app.use(express.json());
 app.use("/api", userRoutes);
 
 const start = async () => {
-  await connectRedis(); // connect Redis before the server starts
+  await connectRedis();
   app.listen(3000, () => console.log("Server running on port 3000"));
 };
 
